@@ -65,6 +65,7 @@ flutter:
     - assets/Pattern.png
     - assets/Pattern2.png
     - assets/Pattern3.png
+    - assets/Pattern4.png
 
     - assets/Group1.png
     - assets/Group2.png
@@ -97,6 +98,7 @@ flutter:
     - assets/search_coloured_icon.png
     - assets/profile_coloured_icon.png
     - assets/clock_icon.png
+    - assets/favourite_icon.png
 
     - assets/Person.png
 

@@ -5,12 +5,12 @@ import 'package:foodie/services/ProductDetails.dart';
 class ProductCarousel extends StatelessWidget {
   final ProductDetails productService = ProductDetails();
   final double? width;
-  final bool isBackgroundImage;
+  final String cardType;  
 
     ProductCarousel(
     {Key? key,       
-      this.width,
-      required this.isBackgroundImage,
+      this.width,      
+      required this.cardType,
     }) : super(key: key);
 
   Future<List<Map<String, String>>> _fetchProductsTitleAndDescription() {
@@ -28,7 +28,7 @@ class ProductCarousel extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
-          return CarouselWithCards(cardData: snapshot.data!, width: width, isBackgroundImage: isBackgroundImage,);
+          return CarouselWithCards(cardData: snapshot.data!, width: width, cardType: cardType,);
         } else {
           return Center(child: Text('No products available.'));
         }
