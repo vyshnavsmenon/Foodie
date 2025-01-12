@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:foodie/components/TextStyle.dart';
 import 'package:foodie/components/custom_card.dart';
+import 'package:foodie/models/productDetails.dart';
 
 class CarouselWithCards extends StatelessWidget {
   final List<Map<String, String>> cardData;
@@ -33,89 +34,108 @@ class CarouselWithCards extends StatelessWidget {
       ),
       items: cardData.map((item) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: _buildCard(item),
+        child: _buildCard(item, context),
       )).toList(),
     );
   }
 
-  Widget _buildCard(Map<String, String> item) {
+  Widget _buildCard(Map<String, String> item, BuildContext context) {
     return CustomCard(
       width: width,
       height: cardHeight,
-      onTap: () => print('Card ${item['title']} tapped!'),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => ProductDetailPage(title: item['title']!, imageUrl: item['image']!, description: item['description']!,)));
+        print('Card has pressed');
+      },
       child: cardType == 'recipe' ? _buildRecipeCard(item) : _buildDefaultCard(item),
     );
   }
 
   Widget _buildRecipeCard(Map<String, String> item) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        color: Colors.white, // Set background color to white
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: imageHeight,
-              child: Image.network(
-                item['image']!,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    height: imageHeight,
-                    color: Colors.grey[200],
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: imageHeight,
-                    color: Colors.grey[200],
-                    child: const Icon(Icons.error_outline),
-                  );
-                },
-              ),
-            ),
-            Flexible(
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item['title']!,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(20),
+    child: Container(
+      color: Colors.white, // Set background color to white
+      child: Stack(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: imageHeight,
+                child: Image.network(
+                  item['image']!,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      height: imageHeight,
+                      color: Colors.grey[200],
+                      child: const Center(
+                        child: CircularProgressIndicator(),
                       ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        if(cardHeight == 280) ...[
-                          _buildIconWithText(Icons.local_fire_department_outlined, '120 Kcal'),
-                          const SizedBox(width: 16),
-                          _buildIconWithText(Icons.access_time, '20 Min'),
-                        ],                        
-                      ],
-                    ),
-                  ],
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: imageHeight,
+                      color: Colors.grey[200],
+                      child: const Icon(Icons.error_outline),
+                    );
+                  },
                 ),
               ),
+              Flexible(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item['title']!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          if (cardHeight == 280) ...[
+                            _buildIconWithText(Icons.local_fire_department_outlined, '120 Kcal'),
+                            const SizedBox(width: 16),
+                            _buildIconWithText(Icons.access_time, '20 Min'),
+                          ],
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if(cardHeight == 280) 
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/favourite_icon.png',
+                width: 80,
+                height: 80,
+              ),
             ),
-          ],
-        ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _buildDefaultCard(Map<String, String> item) {
     return Stack(

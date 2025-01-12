@@ -8,6 +8,7 @@ class PopularRecipeSection extends StatelessWidget {
   final String text;
   final double imageHeight;
   final double viewportFraction;
+  final String text1;
 
   const PopularRecipeSection({
     required this.cardHeight,
@@ -15,7 +16,7 @@ class PopularRecipeSection extends StatelessWidget {
     required this.imageHeight,
     required this.cardWidth,
     required this.viewportFraction,
-    super.key,
+    super.key, required this.text1,
   });
 
   @override

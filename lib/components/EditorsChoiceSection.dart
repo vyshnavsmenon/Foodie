@@ -27,18 +27,17 @@ class EditorsChoice extends StatelessWidget {
                 style: TextStyles.getTextStyle(20, FontWeight.w800, Color(0xFF70B9BE)),
               ),
             ],
-          ),
-
-          // Scrollable List of EditorsListTile widgets
-          SizedBox(height: 16), // Add some spacing
+          ),          
+          SizedBox(height: 16), 
           SizedBox(
-            height: 300, // Set a fixed height for the scrollable area
+            height: 300,
             child: SingleChildScrollView(
               child: Column(
                 children: products.map((product) {
                   return EditorsListTile(
-                    title: product['title'] ?? 'No Title', // Access each product's title
-                    imageUrl: product['image'] ?? '',     // Access each product's image URL
+                    title: product['title'] ?? 'No Title', 
+                    imageUrl: product['image'] ?? '',    
+                    description: product['description'] ?? '', 
                   );
                 }).toList(),
               ),

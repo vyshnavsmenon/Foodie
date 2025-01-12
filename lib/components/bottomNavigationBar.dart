@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/discover.dart';
-import 'package:foodie/home.dart';
-import 'package:foodie/profile.dart';
+import 'package:foodie/models/discover.dart';
+import 'package:foodie/models/home.dart';
+import 'package:foodie/models/profile.dart';
 
 class BottomNavBar extends StatelessWidget {
   final Function(int)? onTap; 

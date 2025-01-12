@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^6.2.1
   carousel_slider: ^5.0.0
   http: ^1.2.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -99,8 +100,23 @@ flutter:
     - assets/profile_coloured_icon.png
     - assets/clock_icon.png
     - assets/favourite_icon.png
+    - assets/favourite_coloured_icon.png
+    - assets/close_icon.png
+    - assets/carbs_icon.png
+    - assets/protiens_icon.png
+    - assets/calories_icon.png
+    - assets/fats_icon.png    
+    - assets/subtract_icon.png
+    - assets/add_icon.png
 
     - assets/Person.png
+    - assets/Person2.png
+    - assets/Person3.png
+    - assets/tortilla.png
+    - assets/Avocado.png
+    - assets/Cabbage.png
+    - assets/Peanuts.png
+    - assets/RedOnion.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/home.dart';
+import 'package:foodie/models/home.dart';
 
 class CustomAppBarExample extends StatelessWidget {
   const CustomAppBarExample({Key? key}) : super(key: key);

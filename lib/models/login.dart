@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/home.dart';
-import './components/TextStyle.dart';
-import './components/CustomButton.dart';
+import 'package:foodie/models/home.dart';
+import 'package:foodie/services/ProductDetails.dart';
+import 'package:provider/provider.dart';
+import '../components/TextStyle.dart';
+import '../components/CustomButton.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ProductProvider>(context, listen: false).fetchProducts();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
                 imageHeight: 136,
                 cardWidth: 200,
                 viewportFraction: 0.55,
+                text1: 'Popular Recipes',
               ),
             ],
           ),

@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/login.dart';
+import 'package:foodie/models/login.dart';
+import 'package:foodie/services/ProductDetails.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

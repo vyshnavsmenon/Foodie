@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:foodie/components/TextStyle.dart';
+import 'package:foodie/models/productDetails.dart';
 
 class EditorsListTile extends StatelessWidget {
   final String title;
   final String imageUrl;  
+  final String description;
   final VoidCallback? onTap;
 
   const EditorsListTile({
     Key? key,
     required this.title,
     required this.imageUrl,    
-    this.onTap,
+    required this.description,
+    this.onTap, 
   }) : super(key: key);
 
   @override
@@ -23,7 +26,12 @@ class EditorsListTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: InkWell(
-            onTap: onTap,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                ProductDetailPage(title: title, imageUrl: imageUrl, description: description)
+              ));
+              print('Card pressed');
+            },
             borderRadius: BorderRadius.circular(16),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
