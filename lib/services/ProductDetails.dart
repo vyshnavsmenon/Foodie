@@ -11,8 +11,10 @@ class ProductProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
 
   Future<void> fetchProducts() async {
-    _isLoading = true;
-    notifyListeners();
+    if (!_isLoading) {
+      _isLoading = true;
+      notifyListeners(); // Notify only if the loading state changes.
+    }
     try {
       final response = await http.get(Uri.parse(_url));
       if (response.statusCode == 200) {
@@ -31,7 +33,7 @@ class ProductProvider with ChangeNotifier {
       print('Error fetching products: $e');
     } finally {
       _isLoading = false;
-      notifyListeners();
+      notifyListeners(); // Notify after data fetch completes or fails.
     }
   }
 }

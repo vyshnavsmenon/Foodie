@@ -15,10 +15,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   @override
-  void initState() {
-    super.initState();
-    Provider.of<ProductProvider>(context, listen: false).fetchProducts();
-  }
+    void initState() {
+      super.initState();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Provider.of<ProductProvider>(context, listen: false).fetchProducts();
+      });
+    }
+
   
   @override
   Widget build(BuildContext context) {
