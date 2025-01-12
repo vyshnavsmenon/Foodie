@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodie/components/TextStyle.dart';
 import 'package:foodie/services/ProductDetails.dart';
 import 'package:provider/provider.dart';
 import 'package:foodie/components/FAB.dart';
@@ -46,8 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              // Profile Section
+              const SizedBox(height: 20),              
               Material(
                 elevation: 4,
                 child: CreatorTile(
@@ -58,6 +58,20 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'My Favourites',
+                    style: TextStyles.getTextStyle(25, FontWeight.w800, Color(0xFF0A2533)),
+                  ),
+                  Text(
+                    'See All',
+                    style: TextStyles.getTextStyle(20, FontWeight.w800, Color(0xFF70B9BE)),
+                  ),
+                ],
+              ),
               Expanded(
                 child: productProvider.isLoading
                     ? const Center(child: CircularProgressIndicator())
@@ -79,6 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 title: recipe['title'] ?? '',
                                 authorName: 'James Spader',
                                 authorAvatarUrl: 'assets/Person.png',
+                                description: recipe['description'] ?? '',
                               );
                             },
                           ),

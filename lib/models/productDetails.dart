@@ -38,7 +38,7 @@ class ProductDetailPage extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      // Gradient overlay
+                                            
                       Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -83,7 +83,7 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                 ],
               ),
-              // Content
+
               SliverToBoxAdapter(
                 child: Container(
                   decoration: BoxDecoration(
