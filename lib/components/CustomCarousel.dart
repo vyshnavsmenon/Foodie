@@ -7,61 +7,84 @@ class CarouselWithCards extends StatelessWidget {
   final List<Map<String, String>> cardData;
   final double? width;
   final String cardType;
+  final double cardHeight;
+  final double imageHeight;
+  final double viewportFraction;
 
   const CarouselWithCards({
     Key? key,
     required this.cardData,
     this.width,
     required this.cardType,
+    required this.cardHeight,
+    required this.imageHeight,
+    required this.viewportFraction,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: _getCarouselHeight(cardType),
+        height: cardHeight,
         enableInfiniteScroll: false,
         autoPlay: false,
-        viewportFraction: cardType == 'recipe' ? 0.55 : 0.85,
+        viewportFraction: cardType == 'recipe' ? viewportFraction : 0.85,
         padEnds: false,
       ),
-      items: cardData.map((item) => _buildCard(item)).toList(),
+      items: cardData.map((item) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: _buildCard(item),
+      )).toList(),
     );
   }
 
-  // Helper to get carousel height
-  double _getCarouselHeight(String type) {
-    return type == 'recipe' ? 300 : 250;
-  }
-
-  // Helper to build card
   Widget _buildCard(Map<String, String> item) {
     return CustomCard(
       width: width,
-      height: cardType == 'recipe' ? 240 : 172,
+      height: cardHeight,
       onTap: () => print('Card ${item['title']} tapped!'),
       child: cardType == 'recipe' ? _buildRecipeCard(item) : _buildDefaultCard(item),
     );
   }
 
-  // Recipe card layout
   Widget _buildRecipeCard(Map<String, String> item) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.network(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        color: Colors.white, // Set background color to white
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: imageHeight,
+              child: Image.network(
                 item['image']!,
-                height: 101.5,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    height: imageHeight,
+                    color: Colors.grey[200],
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    height: imageHeight,
+                    color: Colors.grey[200],
+                    child: const Icon(Icons.error_outline),
+                  );
+                },
               ),
-              Container(
-                color: Colors.white,
+            ),
+            Flexible(
+              child: Container(
                 padding: const EdgeInsets.all(16),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -77,39 +100,31 @@ class CarouselWithCards extends StatelessWidget {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        _buildIconWithText(Icons.local_fire_department_outlined, '120 Kcal'),
-                        const SizedBox(width: 16),
-                        _buildIconWithText(Icons.access_time, '20 Min'),
+                        if(cardHeight == 280) ...[
+                          _buildIconWithText(Icons.local_fire_department_outlined, '120 Kcal'),
+                          const SizedBox(width: 16),
+                          _buildIconWithText(Icons.access_time, '20 Min'),
+                        ],                        
                       ],
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        Positioned(
-          right: 10,
-          top: 10,
-          child: Image.asset('assets/favourite_icon.png',
-            width: 60,
-            height: 60,
-            fit: BoxFit.cover,
-          ), 
-        ),
-      ],
+      ),
     );
   }
 
-  // Default card layout
   Widget _buildDefaultCard(Map<String, String> item) {
     return Stack(
-      children: [      
+      children: [
         Positioned.fill(
-          child:  Image.asset('assets/Pattern4.png',
-              fit: BoxFit.cover,
-            )        
-        ),      
+          child: Image.asset('assets/Pattern4.png',
+            fit: BoxFit.cover,
+          ),
+        ),
         Positioned(
           left: 16,
           right: 16,
@@ -121,7 +136,7 @@ class CarouselWithCards extends StatelessWidget {
               Text(
                 item['title']!,
                 style: TextStyles.getTextStyle(20, FontWeight.w700, Colors.white),
-                maxLines: 2,
+                maxLines: 2,                
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
@@ -139,8 +154,6 @@ class CarouselWithCards extends StatelessWidget {
     );
   }
 
-
-  // Helper to build icon with text
   Widget _buildIconWithText(IconData icon, String text, {Color textColor = Colors.grey}) {
     return Row(
       children: [
@@ -154,7 +167,6 @@ class CarouselWithCards extends StatelessWidget {
     );
   }
 
-  // Helper to build profile row
   Widget _buildProfileWithName(String name) {
     return Row(
       children: [

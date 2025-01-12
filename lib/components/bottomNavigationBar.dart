@@ -48,7 +48,8 @@ class BottomNavBar extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverPage()));
               }
             ),
-            const SizedBox(width: 48), 
+            const SizedBox(width: 80), 
+            
             IconButton(
               icon: Image.asset('assets/notification_icon.png'),              
               onPressed: () => onTap?.call(2),

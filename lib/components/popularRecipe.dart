@@ -3,15 +3,28 @@ import 'package:foodie/components/ProductCarousel.dart';
 import 'package:foodie/components/TextStyle.dart';
 
 class PopularRecipeSection extends StatelessWidget {
-  const PopularRecipeSection({super.key});
+  final double cardHeight;
+  final double cardWidth;
+  final String text;
+  final double imageHeight;
+  final double viewportFraction;
+
+  const PopularRecipeSection({
+    required this.cardHeight,
+    required this.text,
+    required this.imageHeight,
+    required this.cardWidth,
+    required this.viewportFraction,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 270,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -21,16 +34,20 @@ class PopularRecipeSection extends StatelessWidget {
                 style: TextStyles.getTextStyle(25, FontWeight.w800, Color(0xFF0A2533)),
               ),
               Text(
-                'See All',
+                text,
                 style: TextStyles.getTextStyle(20, FontWeight.w800, Color(0xFF70B9BE)),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          Expanded(
+          const SizedBox(height: 8),
+          SizedBox(
+            height: cardHeight, // Add some padding
             child: ProductCarousel(
-              width: 200,
+              cardHeight: cardHeight,
+              imageHeight: imageHeight,
+              width: cardWidth,
               cardType: 'recipe',
+              viewportFraction: viewportFraction,
             ),
           ),
         ],

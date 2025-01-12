@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodie/components/TextStyle.dart';
 
 class CategorySection extends StatelessWidget {
-  const CategorySection({super.key});  
+  final bool isHeading;
+  const CategorySection({Key? key, required this.isHeading}) : super(key: key);      
 
   @override
   Widget build(BuildContext context) {
@@ -11,19 +12,23 @@ class CategorySection extends StatelessWidget {
       height: 130,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Category',
-                style: TextStyles.getTextStyle(25, FontWeight.w800, Color(0xFF0A2533)),
+          if (isHeading)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Category',
+                    style: TextStyles.getTextStyle(25, FontWeight.w800, Color(0xFF0A2533)),
+                  ),
+                  Text(
+                    'See All',
+                    style: TextStyles.getTextStyle(20, FontWeight.w800, Color(0xFF70B9BE)),
+                  ),
+                ],
               ),
-              Text(
-                'See All',
-                style: TextStyles.getTextStyle(20, FontWeight.w800, Color(0xFF70B9BE)),
-              ),
-            ],
-          ),
+            ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,7 +76,7 @@ class CategorySection extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),           
         ],
       ),
     );

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodie/components/ProductCarousel.dart';
 import 'package:foodie/components/TextStyle.dart';
 
-class FeaturedSection extends StatelessWidget {
-  const FeaturedSection({super.key});
+class FeaturedSection extends StatelessWidget {  
+  const FeaturedSection({super.key});  
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class FeaturedSection extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             height: 200,
-              child: ProductCarousel(width: 320, cardType: 'default',),
+              child: ProductCarousel(width: 320, cardType: 'default', cardHeight: 240,),
             ),
         ],
       ),
