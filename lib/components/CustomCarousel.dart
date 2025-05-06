@@ -56,7 +56,7 @@ class CarouselWithCards extends StatelessWidget {
   return ClipRRect(
     borderRadius: BorderRadius.circular(20),
     child: Container(
-      color: Colors.white, // Set background color to white
+      color: Colors.white, 
       child: Stack(
         children: [
           Column(

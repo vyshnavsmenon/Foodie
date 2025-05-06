@@ -19,9 +19,8 @@ class NutritionInfo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
             Container(
-              padding: const EdgeInsets.all(8),
-             
-              child: Row(
+              padding: const EdgeInsets.all(8),             
+              child: Row(                
                 children: [
                   icon,
                   const SizedBox(width: 6,),

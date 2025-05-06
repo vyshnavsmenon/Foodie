@@ -23,17 +23,7 @@ class CustomCard extends StatelessWidget {
         height: height,                
         decoration: BoxDecoration(
           color: Color(0xFF70B9BE),
-          borderRadius: BorderRadius.circular(20),    
-          image: DecorationImage(            
-            image: AssetImage('assets/Pattern4.png', ),
-            fit: BoxFit.cover,
-            alignment: Alignment.topRight,            
-          ),
-          boxShadow: [BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: Offset(0, 2)
-          )]
+          borderRadius: BorderRadius.circular(20),                        
         ),
         child: child,
       ),

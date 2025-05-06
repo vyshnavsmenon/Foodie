@@ -29,8 +29,7 @@ class EditorsListTile extends StatelessWidget {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => 
                 ProductDetailPage(title: title, imageUrl: imageUrl, description: description)
-              ));
-              print('Card pressed');
+              ));              
             },
             borderRadius: BorderRadius.circular(16),
             child: Padding(
@@ -81,8 +80,7 @@ class EditorsListTile extends StatelessWidget {
                         const SizedBox(height: 24),
                         Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
+                            ClipRRect(                              
                               child: Image.asset(
                                 'assets/Person.png',
                                 width: 20,

@@ -31,7 +31,8 @@ class PopularRecipeSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Recipes',
+                // 'Popular Recipes',
+                text1,
                 style: TextStyles.getTextStyle(25, FontWeight.w800, Color(0xFF0A2533)),
               ),
               Text(

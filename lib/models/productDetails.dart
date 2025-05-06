@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodie/components/TextStyle.dart';
 import 'package:foodie/components/creatorTile.dart';
-import 'package:foodie/components/customTab.dart';
+import 'package:foodie/components/customSegmentedControl.dart';
 import 'package:foodie/components/ingredientsList.dart';
 import 'package:foodie/components/nutritionInfo.dart';
 import 'package:foodie/components/popularRecipe.dart';
@@ -141,7 +141,7 @@ class ProductDetailPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround  ,
                                   children: [
                                     NutritionInfo(
                                       icon: Image.asset(
@@ -276,7 +276,7 @@ class ProductDetailPage extends StatelessWidget {
             ],
           ),
         ],
-      ),
+      ),      
     );
   }
 }

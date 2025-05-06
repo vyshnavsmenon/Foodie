@@ -13,10 +13,10 @@ class CustomSearchBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32), 
               child: SizedBox(
                 height: 74,
-                child: SearchBar(                                
+                child: SearchBar(                                                                    
                   leading: const Icon(Icons.search),
                   hintText: 'Search',
-                  hintStyle: MaterialStateProperty.all<TextStyle>(
+                  hintStyle: WidgetStateProperty.all<TextStyle>(
                     TextStyle(
                       fontFamily: 'Sofia Pro',
                       fontSize: 22,
@@ -24,13 +24,13 @@ class CustomSearchBar extends StatelessWidget {
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                       side: const BorderSide(color: Color(0xFFE6EBF2), width: 2),
                     ),
                   ),
-                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFE6EBF2)),
+                  backgroundColor: WidgetStateProperty.all<Color>(const Color(0xFFE6EBF2)),
                 ),
               ),
             ),

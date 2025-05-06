@@ -48,7 +48,3 @@ class CustomAppBarExample extends StatelessWidget {
     );
   }
 }
-
-void main() {
-  runApp(const MaterialApp(home: CustomAppBarExample()));
-}
